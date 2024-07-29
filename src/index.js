@@ -6,7 +6,7 @@ const port = config.port || 3000;
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
-  server = app.listen(port, () => {
+  server = app.listen(port,'0.0.0.0', () => {
     console.log(`Server is listening on ${config.port}`);
   });
 });
