@@ -20,8 +20,6 @@ if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
-//  status 
-app.use(require('express-status-monitor')());
 
 // set security HTTP headers
 app.use(helmet());
@@ -48,7 +46,6 @@ app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
 // limit repeated failed requests to auth endpoints
-console.log("production,", config.env)
 if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
