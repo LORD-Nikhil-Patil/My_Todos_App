@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
-const hostname = '0.0.0.0.101'
+const host = process.env.HOST || 'localhost';
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
-  server = app.listen(config.port, hostname, () => {
+  server = app.listen(config.port, host, () => {
     logger.info(`Listening to port ${config.port}`);
   });
 });
