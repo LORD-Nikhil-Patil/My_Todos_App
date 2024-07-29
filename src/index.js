@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
-
+const port = config.port || 3000;
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
-  server = app.listen(config.port,'0.0.0.0', () => {
+  server = app.listen(port,'0.0.0.0', () => {
     console.log(`Server is listening on http://0.0.0.0:${config.port}`);
   });
 });
